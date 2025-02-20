@@ -1,25 +1,27 @@
 package com.mehmetkaradana.notification;
 
-import java.security.PublicKey;
 
 
 public class FCMRequestDTO {
 
-    private String to;
-    private NotificationBody notificationBody= new NotificationBody();
+    private final String to;
+    private final String title;
+    private final String body;
 
-    public NotificationBody getNotificationBody() {
-        return notificationBody;
+
+   public FCMRequestDTO(String to, String title, String body){
+        this.to=to;
+        this.title = title;
+        this.body = body;
     }
 
-    public void setNotificationBody(NotificationBody notificationBody) {
-        this.notificationBody = notificationBody;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public String getBody() {
+        return body;
     }
-
 
     public String getTo() {
         return to;

@@ -19,14 +19,17 @@ public class FCMService {
 
     public String sendMessage(FCMRequestDTO requestDTO) throws FirebaseMessagingException {
 
+        if (requestDTO.getTitle() == null || requestDTO.getBody() == null || requestDTO.getTo() == null || requestDTO.getTo().isEmpty()) {
+            throw new IllegalArgumentException("Title, body ve to alanları boş olamaz.");
+        }
         Notification notification = Notification.builder()
-                .setTitle(requestDTO.getNotificationBody().getTitle())
-                .setBody(requestDTO.getNotificationBody().getBody())// "chat" konusuna abone olan herkese gider
+                .setTitle(requestDTO.getTitle())
+                .setBody(requestDTO.getBody())// "chat" konusuna abone olan herkese gider
                 .build();
 
         Map<String, String> data = new HashMap<>();
-        data.put("title", "test title");
-        data.put("body", "test notification");
+        data.put("title", requestDTO.getTitle());
+        data.put("body", requestDTO.getBody());
 
         Message message = Message.builder().setNotification(notification)
                 .putAllData(data)
@@ -38,14 +41,16 @@ public class FCMService {
     }
 
     public String broadcast(FCMRequestDTO requestDTO) throws FirebaseMessagingException {
-
+        if (requestDTO.getTitle() == null || requestDTO.getBody() == null ) {
+            throw new IllegalArgumentException("Title, body alanları boş olamaz.");
+        }
         Notification notification = Notification.builder()
-                        .setTitle(requestDTO.getNotificationBody().getTitle())
-                        .setBody(requestDTO.getNotificationBody().getBody())// "chat" konusuna abone olan herkese gider
+                        .setTitle(requestDTO.getTitle())
+                        .setBody(requestDTO.getBody())// "chat" konusuna abone olan herkese gider
                 .build();
         Map<String, String> data = new HashMap<>();
-        data.put("title", requestDTO.getNotificationBody().getTitle());
-        data.put("body", requestDTO.getNotificationBody().getBody());
+        data.put("title", requestDTO.getTitle());
+        data.put("body", requestDTO.getBody());
         Message message = Message.builder()
                 .setNotification(notification)
                 .putAllData(data)
