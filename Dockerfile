@@ -1,11 +1,11 @@
-# Temel imaj olarak OpenJDK 21'yi kullanıyoruz
-FROM openjdk:21-jdk-slim
+# Hafif ve optimize edilmiş bir OpenJDK 21 imajı kullanıyoruz
+FROM eclipse-temurin:21-jre
 
-# Uygulamanın çalışacağı dizini belirliyoruz
+# Çalışma dizinini ayarla
 WORKDIR /app
 
-# Maven build ile oluşturulan JAR dosyasını container içine kopyalıyoruz
-COPY target/notification-0.0.1-SNAPSHOT.jar /app/application.jar
+# Maven ile derlenen JAR dosyasını container içine kopyala
+COPY target/notification-0.0.1-SNAPSHOT.jar application.jar
 
 # Uygulamanın çalıştırılacağı komutu belirtiyoruz
 ENTRYPOINT ["java", "-jar", "application.jar"]
