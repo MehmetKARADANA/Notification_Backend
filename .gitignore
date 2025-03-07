@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+###goggle-credential##
+src/main/resources/tskpersonelteminapp-firebase-adminsdk.json

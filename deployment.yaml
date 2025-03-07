@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-app
+spec:
+  replicas: 1 # Pod sayısını belirler
+  selector:
+    matchLabels:
+      app: notification-app
+  template:
+    metadata:
+      labels:
+        app: notification-app
+    spec:
+      containers:
+        - name: notification-app
+          image: mehmetkaradana34/notification-app  # ECR veya Docker Hub'dan bir image kullan
+          ports:
+            - containerPort: 8080
