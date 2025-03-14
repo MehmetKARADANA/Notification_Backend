@@ -52,7 +52,7 @@ public class FCMService {
         data.put("title", requestDTO.getTitle());
         data.put("body", requestDTO.getBody());
         Message message = Message.builder()
-                .setNotification(notification)
+               // .setNotification(notification)
                 .putAllData(data)
                 .setTopic("chat")
                 .build();
